@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="container-fluid vh-100">
+    <div class="login-container">
+        <header>
+            <i class="bi bi-twitter twitter-logo"></i>
+            <h3>Entrar no Twitter</h3>
+
+            {% if invalid_credential %}
+                <span class="text-danger">E-mail ou senha inválidos</span>
+            {% endif %}
+        </header>
+
+        <form action role="form" method="POST">
+            {{ form.csrf_token() }}
+
+            {{ form.email(class_="twitter-input", placeholder="E-mail") }}
+            {{ form.password(class_="twitter-input", placeholder="Senha") }}
+
+            <button class="btn-primary-solid" type="submit">Entrar</button>
+        </form>
+
+        <div class="mt-5">
+            <a href="http://">Inscrever-se</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

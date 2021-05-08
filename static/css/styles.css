@@ -103,6 +103,20 @@ button {
     color: var(--primary);
 }
 
+.twitter-input {
+    border: solid gray 1.4px;
+    padding: 13px;
+
+    margin-bottom: 0.4rem;
+
+    border-radius: 4px;
+}
+
+.twitter-input:hover {
+    border: solid var(--primary) 1.4px;
+    border-radius: 5px;
+}
+
 /* Página da Index */
 .index-banner {
     height: 100%;
@@ -125,5 +139,39 @@ button {
 
 .index-content-container > h3 {
     font-weight: 800;
+}
+
+/* Página de Login */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+}
+
+.login-container form, .login-container header {
+    width: 30%;
+}
+
+.login-container input, .login-container button {
+    width: 100%;
+}
+
+.login-container input {
+    margin-bottom: 1rem;
+}
+
+.login-container button, .login-container h3 {
+    margin: 0;
+}
+
+.login-container h3 {
+    font-weight: 800;
+}
+
+.login-container header {
+    margin-bottom: 1.3rem;
 }
 
