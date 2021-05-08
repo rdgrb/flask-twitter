@@ -1,10 +1,14 @@
-{% macro tweet_card(tweet, moment) -%}
+{% macro tweet_card(tweet, moment, profile_redirect) -%}
 
 <div class="tweet-card border-bottom">
     <div class="tweet-card-avatar">
-        <a href="">
+        {% if profile_redirect %} 
+            <a href="">
+                <img src="https://ui-avatars.com/api/?name={{ tweet.name }}" alt="Foto de Perfil" >
+            </a>
+        {% else %}
             <img src="https://ui-avatars.com/api/?name={{ tweet.name }}" alt="Foto de Perfil" >
-        </a>
+        {% endif %}
     </div>
     <div class="tweet-card-content">
         <header>

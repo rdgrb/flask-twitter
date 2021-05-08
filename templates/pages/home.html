@@ -38,7 +38,7 @@
 
     <div class="home-timeline">
         {% for tweet in tweets %}
-            {{ tweet_card(tweet, moment) }}
+            {{ tweet_card(tweet, moment, True) }}
         {% endfor %}
     </div>
 </div>
