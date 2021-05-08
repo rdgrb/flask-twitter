@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for 
 from flask_sqlalchemy import SQLAlchemy
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user, login_user, logout_user
 
 from flask_moment import Moment
 from datetime import datetime
@@ -25,15 +25,23 @@ login_manager.login_view = "login"
 # Importação dos módulos responsáveis pelo gerenciamento de dados/login.
 from auth.forms import LoginForm, RegisterForm
 from models.User import User
+from models.Tweet import Tweet
+
 
 @app.route("/")
 def index():
+    if current_user.is_authenticated:
+        return redirect(url_for("dashboard"))
+
     form = RegisterForm()
 
     return render_template("pages/index.html", form = form)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for("dashboard"))
+
     form = LoginForm()
 
     if form.validate_on_submit():
@@ -42,10 +50,23 @@ def login():
         if user is None:
             return render_template("login.html", invalid_credential = True, form = form)
 
+        login_user(user)
+
+        return redirect(url_for("dashboard"))
+
     return render_template("pages/login.html", form = form)
+
+@app.route("/logout", methods=["GET", "POST"])
+def logout():
+    logout_user()
+
+    return redirect(url_for("index"))
 
 @app.route("/register", methods=["POST"])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for("dashboard"))
+
     form = RegisterForm()
     errors = {}
 
@@ -79,7 +100,27 @@ def register():
     else:
         return render_template("pages/register.html", form = form)
 
+@app.route("/home")
+def dashboard():
+    tweets = Tweet.query.join(User, Tweet.id_user == User.id).add_columns(
+        Tweet.id,
+        Tweet.tweet,
+        Tweet.tweeted_at,
+        User.id,
+        User.name,
+        User.username,
+        User.verified,
+    ).order_by(Tweet.tweeted_at.desc())
 
+    current_date = datetime.utcnow()
+
+    return render_template(
+        "pages/home.html",
+        active_page = "home",
+        tweets = tweets,
+        now = current_date,
+        page_title = "Página Inicial"
+    )
 
 with app.app_context():
     db.create_all()
