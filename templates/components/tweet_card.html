@@ -1,0 +1,28 @@
+{% macro tweet_card(tweet, moment) -%}
+
+<div class="tweet-card border-bottom">
+    <div class="tweet-card-avatar">
+        <a href="">
+            <img src="https://ui-avatars.com/api/?name={{ tweet.name }}" alt="Foto de Perfil" >
+        </a>
+    </div>
+    <div class="tweet-card-content">
+        <header>
+            <span>
+                {{ tweet.name }}
+
+                {% if tweet.verified %}
+                    <i class="bi bi-patch-check-fill"></i>
+                {% endif %}
+            </span>
+            <span>@{{ tweet.username }}</span>
+            <span>{{ moment(tweet.tweeted_at).fromNow(refresh=True) }}</span>
+        </header>
+
+        <div>
+            <p>{{ tweet.tweet }}</p>
+        </div>
+    </div>
+</div>
+
+{%- endmacro %}

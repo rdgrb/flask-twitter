@@ -1,0 +1,46 @@
+{% extends "base_dashboard.html" %}
+{% from "components/tweet_card.html" import tweet_card %}
+
+{% block dashboard_content %}
+
+<div class="home-container">
+    <header class="border-bottom">
+        <h4>Página inicial</h4>
+    </header>
+
+    <form action>
+        <div class="home-input-container">
+            <div class="home-input-avatar">
+                <img src="https://ui-avatars.com/api/?name={{ current_user.name }}" alt="Foto de Perfil">
+            </div>
+            <div class="home-input">
+                <textarea 
+                    name="inputTweet" 
+                    id="inputTweet"
+                    maxlength="280"
+                    placeholder="O que está acontecendo?"
+                    required
+                ></textarea>
+            </div>
+        </div>
+
+        <div class="home-input-action-container">
+            <div>
+                <span id="characterCount">0</span>
+                <span>/280</span>
+            </div>
+
+            <button class="btn-primary-solid" type="submit">Tweetar</button>
+        </div>
+    </form>
+
+    <hr class="home-timeline-divider border-top border-bottom">
+
+    <div class="home-timeline">
+        {% for tweet in tweets %}
+            {{ tweet_card(tweet, moment) }}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
