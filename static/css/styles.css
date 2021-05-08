@@ -48,3 +48,82 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+/* Componentes Globais */
+button {
+    cursor: pointer;
+}
+
+.btn-primary-solid {
+    color: #FFF;
+    background: var(--primary);
+
+    font-weight: bold;
+    padding: 10px 30px;
+
+    margin-right: 5px;
+
+    border: 0;
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: background 0.5s;
+}
+
+.btn-primary-solid:hover {
+    background: var(--primary-dark);
+    text-decoration: none;
+}
+
+.btn-primary-outline {
+    color: var(--primary);
+    background: white; 
+
+    font-weight: bold;
+    padding: 10px 30px; 
+
+    margin-right: 5px;
+
+    border: solid 1px var(--primary);
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    transition: background 0.5s;
+}
+
+.btn-primary-outline:hover {
+    background: whitesmoke;
+    text-decoration: none;
+}
+
+.twitter-logo {
+    font-size: 2rem;
+    color: var(--primary);
+}
+
+/* Página da Index */
+.index-banner {
+    height: 100%;
+    width: 100%;
+
+    object-fit: cover;
+}
+
+.index-content-container {
+    padding: 7rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.index-content-container > div {
+    margin-top: 4rem;
+}
+
+.index-content-container > h3 {
+    font-weight: 800;
+}
+

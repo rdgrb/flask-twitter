@@ -2,6 +2,27 @@
 
 {% block page_content %}
 
-<h1>Index</h1>
+<div class="container-fluid vh-100">
+    <div class="row">
+        <div class="col-6 border-right vh-100 p-0">
+            <img
+                class="index-banner"
+                src="{{ url_for('static', filename='assets/twitter-bg.png') }}" 
+                alt="Banner do Twitter"
+            >
+        </div>
+        <div class="col-6 index-content-container">
+            <i class="bi bi-twitter twitter-logo"></i>
+
+            <h3>Acontecendo agora</h3>
+            <h6>Inscreva-se no Twitter agora mesmo</h6>
+
+            <div>
+                <button class="btn-primary-solid">Inscrever-se</button>
+                <a class="btn-primary-outline" href="#">Entrar</a>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
