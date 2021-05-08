@@ -137,11 +137,14 @@ def profile(user_id):
 
     user = {}
     tweets = {}
+    active_page = "profile"
 
     if user_id == -1:
         tweets = search_tweets(current_user.id)
         user = current_user
     else:
+        active_page = None
+
         user = User.query.filter_by(id = user_id).first()
         if user is not None:
             tweets = search_tweets(user_id)
@@ -150,9 +153,26 @@ def profile(user_id):
         "pages/profile.html",
         user = user,
         tweets = tweets,
-        active_page = {"profile" if user_id != -1 else ""},
+        active_page = active_page,
         page_title = user.name
     )
+
+@app.route("/send_tweet", methods=["POST"])
+def send_tweet():
+    tweet_form = request.form["inputTweet"]
+
+    tweet = Tweet(
+        current_user.id,
+        tweet_form,
+        datetime.utcnow()
+    )
+
+    db.session.add(tweet)
+    db.session.commit()
+
+    return redirect(url_for("dashboard"))
+
+
 
 with app.app_context():
     db.create_all()
