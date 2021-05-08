@@ -1,0 +1,29 @@
+{% macro modal_register(form) -%}
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header align-items-center border-0">
+                <i class="bi bi-twitter twitter-logo mr-3"></i>
+                <h5 class="modal-title">Crie sua Conta</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form action="{{ url_for('register' )}}" role="form" method="POST">
+                    {{ form.csrf_token() }}
+
+                    {{ form.name(class_="twitter-input", placeholder="Nome")}}
+                    {{ form.username(class_="twitter-input", placeholder="Usuário (arroba)")}}
+                    {{ form.email(class_="twitter-input", placeholder="E-mail")}}
+                    {{ form.password(class_="twitter-input", placeholder="Senha")}}
+ 
+                    <button class="btn-primary-solid" type="submit">Inscrever-se</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{%- endmacro %}
