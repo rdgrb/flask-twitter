@@ -16,7 +16,7 @@
                         </button>
                     </li>
                     <li>
-                        <a href="" 
+                        <a href="{{ url_for('dashboard') }}" 
                             class="dashboard-sidenav-link {{'dashboard-sidenav-link-active' if active_page == 'home' }}">
                             <div class="dashboard-sidenav-link-icon">
                                 <i class="bi bi-house"></i>
@@ -25,7 +25,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="dashboard-sidenav-link {{'dashboard-sidenav-link-active' if active_page == 'profile' }}">
+                        <a href="{{ url_for('profile') }}" class="dashboard-sidenav-link {{'dashboard-sidenav-link-active' if active_page == 'profile' }}">
                             <div class="dashboard-sidenav-link-icon">
                                 <i class="bi bi-person-circle"></i>
                             </div>

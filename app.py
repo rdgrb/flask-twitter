@@ -122,6 +122,38 @@ def dashboard():
         page_title = "Página Inicial"
     )
 
+@app.route("/profile", defaults={ "user_id": -1 })
+@app.route("/profile/<user_id>")
+def profile(user_id):
+    def search_tweets(id):
+        return Tweet.query.join(User, Tweet.id_user == User.id).filter(Tweet.id_user == id).add_columns(
+            Tweet.id,
+            Tweet.tweet,
+            Tweet.tweeted_at,
+            User.id,
+            User.name,
+            User.username,
+        ).order_by(Tweet.tweeted_at.desc())
+
+    user = {}
+    tweets = {}
+
+    if user_id == -1:
+        tweets = search_tweets(current_user.id)
+        user = current_user
+    else:
+        user = User.query.filter_by(id = user_id).first()
+        if user is not None:
+            tweets = search_tweets(user_id)
+    
+    return render_template(
+        "pages/profile.html",
+        user = user,
+        tweets = tweets,
+        active_page = {"profile" if user_id != -1 else ""},
+        page_title = user.name
+    )
+
 with app.app_context():
     db.create_all()
 
