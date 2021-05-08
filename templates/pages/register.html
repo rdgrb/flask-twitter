@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="container-fluid vh-100">
+    <div class="register-container">
+        <header>
+            <i class="bi bi-twitter twitter-logo"></i>
+            <h3>Crie sua conta</h3>
+        </header>
+    
+        <form action role="form" method="POST">
+            {{ form.csrf_token() }}
+    
+            {{ form.name(class_="twitter-input", placeholder="Nome")}}
+    
+            <div class="register-input-group">
+                {{ form.username(class_="twitter-input", placeholder="Usuário (arroba)")}}
+                {% if error_username %}
+                    <span class="text-danger">Esse username já esta sendo utilizado</span>
+                {% endif %}
+            </div>
+    
+            <div class="register-input-group">
+                {{ form.email(class_="twitter-input", placeholder="E-mail")}}
+                {% if error_email %}
+                    <span class="text-danger">Esse e-mail já foi cadastrado</span>
+                {% endif %}
+            </div>
+    
+            {{ form.password(class_="twitter-input", placeholder="Senha")}}
+    
+            <button class="btn-primary-solid" type="submit">Inscrever-se</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

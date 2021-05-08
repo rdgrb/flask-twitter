@@ -141,8 +141,8 @@ button {
     font-weight: 800;
 }
 
-/* Página de Login */
-.login-container {
+/* Página de Login e de Registro */
+.login-container, .register-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -151,15 +151,22 @@ button {
     height: 100%;
 }
 
-.login-container form, .login-container header {
+.login-container form,
+.register-container form,
+.login-container header,
+.register-container header {
     width: 30%;
 }
 
-.login-container input, .login-container button {
+.login-container input,
+.register-container input, 
+.login-container button,
+.register-container button {
     width: 100%;
 }
 
-.login-container input {
+.login-container input, 
+.register-container input {
     margin-bottom: 1rem;
 }
 
@@ -167,11 +174,52 @@ button {
     margin: 0;
 }
 
-.login-container h3 {
+.login-container h3, .register-container h3 {
     font-weight: 800;
 }
 
-.login-container header {
+.login-container header, .register-container header {
     margin-bottom: 1.3rem;
 }
 
+/* Modal de Registro */
+#registerModal form {
+    display: flex;
+    flex-direction: column;
+}
+
+#registerModal form > input {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#registerModal form > button {
+    margin-top: 1.3rem;
+}
+
+#registerModal .modal-title {
+    font-weight: 800;
+}
+
+#registerModal .modal-dialog {
+    width: 40%;
+}
+
+#registerModal .modal-content {
+    border-radius: 0.8rem;
+
+    padding: 1.7rem;
+}
+
+/* Página de Registro */
+.register-input-group {
+    margin-bottom: 1rem;
+}
+
+.register-input-group input {
+    margin-bottom: 0;
+}
+
+.register-input-group span  {
+    margin-top: 0.3rem;
+}
