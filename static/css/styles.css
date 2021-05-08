@@ -345,6 +345,9 @@ button {
 
 .home-input-avatar img {
     border-radius: 100%;
+
+    width: 70px;
+    height: 70px;
 }
 
 .home-input {

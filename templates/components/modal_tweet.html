@@ -1,0 +1,42 @@
+{% macro modal_tweet(name) -%}
+
+<div class="modal fade" id="tweetModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header justify-content-start">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form action="{{ url_for('send_tweet') }}" method="POST">
+                <div class="modal-body py-3">
+                    <div class="home-input-container">
+                        <div class="home-input-avatar">
+                            <img src="https://ui-avatars.com/api/?name={{ name }}" alt="Foto de Perfil">
+                        </div>
+                        <div class="home-input">
+                            <textarea 
+                                name="inputTweet" 
+                                id="inputTweet"
+                                maxlength="280"
+                                placeholder="O que está acontecendo?"
+                                required
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <div>
+                        <span id="characterCount">0</span>
+                        <span>/280</span>
+                    </div>
+        
+                    <button class="btn-primary-solid" type="submit">Tweetar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{%- endmacro %}
