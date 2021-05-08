@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;700;900&display=swap');
+* {
+    font-family: "Montserrat"
+}
+
+/* Tema antigo
+:root {
+    --primary: #1da1f2;
+    --primary-light: #e8f5fe;
+    --primary-dark: #097ac0;
+
+    --background: #181a1b;
+    --text: #d1cdc7;
+    --subtext: gray;
+
+    --divider: #f7f9fa;
+} */
+
+/* Tema padrão */
+:root {
+    --primary: #1da1f2;
+    --primary-light: #e8f5fe;
+    --primary-dark: #097ac0;
+
+    --background: #FFF;
+    --text: #000;
+    --subtext: gray;
+
+    --divider: #f7f9fa;
+}
+
+::-webkit-scrollbar {
+    width: 0.3rem;
+  }
+
+::-webkit-scrollbar-track {
+    background: var(--text);
+}
+  
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 5px;
+  
+    transition: background 0.3s;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
