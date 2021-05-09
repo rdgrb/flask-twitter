@@ -43,14 +43,18 @@
                 <span>@{{ user.username }}</span>
 
                 <div>
-                    {% if user.bio %}
-                        <p>{{ user.bio }}</p>
-                    {% else %}
+                    {% if not user.bio %}
                         <p>Nenhuma biografia inserida</p>
+                    {% else %}
+                        <p>{{ user.bio }}</p>
                     {% endif %}
                 </div>
 
-                <span><i class="bi bi-calendar3"></i> Ingressou em {{ moment(user.created_at).format('MMMM [de] YYYY') }}</span>
+                <div class="profile-user-dates">
+                    <span><i class="bi bi-calendar3"></i> Ingressou em {{ moment(user.created_at).format('MMMM [de] YYYY') }}</span>
+                    <span class="ml-2"><i class="bi bi-suit-club"></i> Nascido(a) em {{ moment(user.birth_date).format('DD [de] MMMM') }} </span>
+                </div>
+
             </div>
 
             <div class="profile-tweets-container">

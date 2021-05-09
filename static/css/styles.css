@@ -592,7 +592,8 @@ button {
     margin: 0;
 }
 
-.profile-user-info span {
+.profile-user-info span, 
+.profile-user-dates i {
     color: var(--subtext);
 }
 
@@ -603,6 +604,10 @@ button {
 .profile-user-info div {
     margin: 1.2rem 0rem;
     font-size: 0.9375rem;
+}
+
+.profile-user-dates span {
+    font-size: 0.875rem;
 }
 
 .profile-tweets-container > header {
