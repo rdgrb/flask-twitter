@@ -4,12 +4,15 @@ from flask_login import LoginManager, current_user, login_user, logout_user
 
 from flask_moment import Moment
 from datetime import datetime
+from pytz import timezone
 
 app = Flask("__name__")
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///twitter.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 
 app.secret_key = "TWITTER_FLASK_SECRET_KEY"
+
+local_timezone = timezone("America/Sao_Paulo")
 
 # Inicialização e configuração do SQL-Alchemy
 db = SQLAlchemy(app)
@@ -90,7 +93,8 @@ def register():
             form.username.data,
             form.email.data,
             form.password.data,
-            datetime.utcnow(),
+            form.birth_date.data,
+            local_timezone.localize(datetime.now()),
         )
 
         db.session.add(user)
@@ -112,7 +116,7 @@ def dashboard():
         User.verified,
     ).order_by(Tweet.tweeted_at.desc())
 
-    current_date = datetime.utcnow()
+    current_date = local_timezone.localize(datetime.now())
 
     return render_template(
         "pages/home.html",
@@ -149,10 +153,12 @@ def profile(user_id):
         if user is not None:
             tweets = search_tweets(user_id)
     
+    current_date = local_timezone.localize(datetime.now())
     return render_template(
         "pages/profile.html",
         user = user,
         tweets = tweets,
+        now = current_date,
         active_page = active_page,
         page_title = user.name
     )
@@ -164,7 +170,7 @@ def send_tweet():
     tweet = Tweet(
         current_user.id,
         tweet_form,
-        datetime.utcnow()
+        local_timezone.localize(datetime.now())
     )
 
     db.session.add(tweet)

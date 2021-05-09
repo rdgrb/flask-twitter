@@ -1,4 +1,4 @@
-{% macro tweet_card(tweet, moment, profile_redirect) -%}
+{% macro tweet_card(tweet, moment, profile_redirect, current_date) -%}
 
 <div class="tweet-card border-bottom">
     <div class="tweet-card-avatar">
@@ -20,7 +20,7 @@
                 {% endif %}
             </span>
             <span>@{{ tweet.username }}</span>
-            <span>{{ moment(tweet.tweeted_at).fromNow(refresh=True) }}</span>
+            <span>{{ moment(tweet.tweeted_at).fromTime(current_date, refresh=True) }}</span>
         </header>
 
         <div>

@@ -60,7 +60,7 @@
             </div>
 
             {% for tweet in tweets %}
-                {{ tweet_card(tweet, moment, False) }}
+                {{ tweet_card(tweet, moment, False, now) }}
             {% endfor %}
         </div>
     </div>
