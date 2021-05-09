@@ -21,6 +21,7 @@
                                 id="inputTweet"
                                 maxlength="280"
                                 placeholder="O que está acontecendo?"
+                                onkeypress="handleCharacterCount(this, true)"
                                 required
                             ></textarea>
                         </div>
@@ -28,7 +29,7 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <div>
-                        <span id="characterCount">0</span>
+                        <span id="characterCountModal">0</span>
                         <span>/280</span>
                     </div>
         
