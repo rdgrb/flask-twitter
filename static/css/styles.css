@@ -512,7 +512,8 @@ button {
 }
 
 .tweet-card-content i, 
-.profile-user-info i {
+.profile-user-info i,
+.profile-header-container i {
     color: var(--primary);
 }
 
@@ -545,6 +546,18 @@ button {
 
 .profile-container header a:hover {
     background: var(--primary-light);
+}
+
+.profile-container .alert-container {
+    position: absolute;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    bottom: 1rem;
 }
 
 .profile-header-container {
@@ -617,4 +630,80 @@ button {
 .profile-tweets-container h6 {
     font-weight: 700;
     color: var(--primary);
+}
+
+.profile-tweet-empty-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 7rem 0rem;
+    width: 100%;
+}
+
+.profile-tweet-empty-container h6 {
+    font-weight: 800;
+}
+
+/* #editModal .modal-body {
+    position: relative !important;
+}
+
+#editModal .profile-avatar-container {
+    z-index: 5;
+}
+
+#editModal .profile-cover-banner {
+    position: absolute;
+
+    width: 100%;
+    height: 200px;
+
+    z-index: 2;
+} */
+
+#editModal h5 {
+    font-weight: 800;
+}
+
+#editModal .modal-body {
+    position: relative;
+}
+
+#editModal .profile-cover-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: var(--primary-light);
+
+    z-index: 1;
+}
+
+#editModal .profile-content {
+    padding: 1rem;
+}
+
+#editModal input, textarea {
+    width: 100%;
+}
+
+#editModal .profile-user-info {
+    padding: 1rem 0rem;
+}
+
+#editModal .profile-avatar-container {
+    padding: 0rem;
+}
+
+#editModal .profile-avatar-container img {
+    width: 100px;
+    height: 100px;
+}
+
+#editModal .profile-content {
+    position: relative;
+    z-index: 5;
 }

@@ -1,5 +1,6 @@
 {% extends "base_dashboard.html" %}
 {% from "components/tweet_card.html" import tweet_card %}
+{% from "components/modal_edit.html" import modal_edit %}
 
 {% block dashboard_content %}
 
@@ -29,7 +30,13 @@
                     <img src="https://ui-avatars.com/api/?name={{ user.name }}" alt="Foto de perfil" >
 
                     {% if user.id == current_user.id %}
-                        <button class="btn-primary-solid">Editar perfil</button>
+                        <button 
+                            data-toggle="modal" 
+                            data-target="#editModal" 
+                            class="btn-primary-solid"
+                        >
+                            Editar perfil
+                        </button>
                     {% endif %}
                 </div>
 
@@ -63,11 +70,37 @@
                 </header>
             </div>
 
-            {% for tweet in tweets %}
-                {{ tweet_card(tweet, moment, False, now) }}
-            {% endfor %}
+            {% if tweets.count() == 0 %}
+                <div class="profile-tweet-empty-container">
+                    {% if user.id == current_user.id %}
+                        <h6>Você ainda não possui tweets</h6>
+                    {% else %}
+                        <h6>Esse usuário ainda não possui tweets</h6>
+                    {% endif %}
+                </div>
+            {% else %} 
+                {% for tweet in tweets %}
+                    {{ tweet_card(tweet, moment, False, now) }}
+                {% endfor %}
+            {% endif %}
+
         </div>
     </div>
+
+
+
+    {% if error_while_editing %}
+        <div class="alert-container">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <span>Ocorreu um erro ao editar seu perfil. Tente novamente</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    {% endif %}
+
+    {{ modal_edit(current_user, form) }}
 </div>
 
 {% endblock %}

@@ -26,10 +26,9 @@ login_manager.init_app(app)
 login_manager.login_view = "login"
 
 # Importação dos módulos responsáveis pelo gerenciamento de dados/login.
-from auth.forms import LoginForm, RegisterForm
+from auth.forms import LoginForm, RegisterForm, EditForm
 from models.User import User
 from models.Tweet import Tweet
-
 
 @app.route("/")
 def index():
@@ -155,13 +154,16 @@ def profile(user_id):
             tweets = search_tweets(user_id)
     
     current_date = local_timezone.localize(datetime.now())
+    form = EditForm()
+
     return render_template(
         "pages/profile.html",
         user = user,
         tweets = tweets,
         now = current_date,
         active_page = active_page,
-        page_title = user.name
+        page_title = user.name,
+        form = form
     )
 
 @app.route("/send_tweet", methods=["POST"])
@@ -179,6 +181,21 @@ def send_tweet():
 
     return redirect(url_for("dashboard"))
 
+@app.route("/save_edit", methods=["POST"])
+def save_edit():
+    form = EditForm()
+
+    if form.validate_on_submit():
+        user = User.query.filter_by(id = current_user.id).first()
+        user.name = form.name.data
+        user.bio = form.bio.data
+
+        db.session.commit()
+        login_user(user)
+
+        return redirect(url_for("profile"))
+    else:
+        return redirect(url_for("profile"), error_while_editing = True)
 
 
 with app.app_context():

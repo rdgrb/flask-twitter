@@ -1,0 +1,38 @@
+{% macro modal_edit(user, form) -%}
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header align-items-center">
+                <h5 class="modal-title">Editar Perfil</h5>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form action="{{ url_for('save_edit') }}" method="POST" role="form">
+                {{ form.csrf_token() }}
+
+                <div class="modal-body p-0">
+                    <div class="profile-cover-banner"></div>
+
+                    <div class="profile-content">
+                        <div class="profile-user-info">
+                            <div class="profile-avatar-container">
+                                <img src="https://ui-avatars.com/api/?name={{ user.name }}" alt="Foto de perfil" >
+                            </div>
+                        </div>
+    
+                        {{ form.name(class_="twitter-input", placeholder="Nome", value=user.name)}}
+                        {{ form.bio(class_="twitter-input", placeholder="Bio", value=user.bio, maxlength=150)}}
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn-primary-solid">Salvar alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{%- endmacro %}
