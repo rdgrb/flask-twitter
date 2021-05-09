@@ -8,7 +8,7 @@ from pytz import timezone
 
 app = Flask("__name__")
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///twitter.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 app.secret_key = "TWITTER_FLASK_SECRET_KEY"
 
@@ -37,7 +37,11 @@ def index():
 
     form = RegisterForm()
 
-    return render_template("pages/index.html", form = form)
+    return render_template(
+        "pages/index.html", 
+        form = form,
+        page_title = "Twitter. É o que está acontecendo"
+    )
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -51,13 +55,24 @@ def login():
         user = User.query.filter_by(email = form.email.data).first()
 
         if user is None:
-            return render_template("pages/login.html", invalid_credential = True, form = form, register_form = register_form)
+            return render_template(
+                "pages/login.html", 
+                invalid_credential = True, 
+                form = form, 
+                register_form = register_form,
+                page_title = "Entrar no Twitter"
+            )
 
         login_user(user)
 
         return redirect(url_for("dashboard"))
 
-    return render_template("pages/login.html", form = form, register_form = register_form)
+    return render_template(
+        "pages/login.html", 
+        form = form, 
+        register_form = register_form,
+        page_title = "Entrar no Twitter"
+    )
 
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
@@ -85,7 +100,8 @@ def register():
                 "pages/register.html",
                 error_email = errors["email"],
                 error_username = errors["username"],
-                form = form
+                form = form,
+                page_title = "Inscrever-se no Twitter"
             )
 
         user = User(
@@ -102,7 +118,11 @@ def register():
 
         return redirect(url_for("login"))
     else:
-        return render_template("pages/register.html", form = form)
+        return render_template(
+            "pages/register.html", 
+            form = form,
+            page_title = "Inscrever-se no Twitter"
+        )
 
 @app.route("/home")
 def dashboard():
