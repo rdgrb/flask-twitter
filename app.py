@@ -46,18 +46,19 @@ def login():
         return redirect(url_for("dashboard"))
 
     form = LoginForm()
+    register_form = RegisterForm()
 
     if form.validate_on_submit():
         user = User.query.filter_by(email = form.email.data).first()
 
         if user is None:
-            return render_template("pages/login.html", invalid_credential = True, form = form)
+            return render_template("pages/login.html", invalid_credential = True, form = form, register_form = register_form)
 
         login_user(user)
 
         return redirect(url_for("dashboard"))
 
-    return render_template("pages/login.html", form = form)
+    return render_template("pages/login.html", form = form, register_form = register_form)
 
 @app.route("/logout", methods=["GET", "POST"])
 def logout():

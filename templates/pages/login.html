@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "components/modal_register.html" import modal_register %}
 
 {% block page_content %}
 
@@ -23,8 +24,12 @@
         </form>
 
         <div class="mt-5">
-            <a href="http://">Inscrever-se</a>
+            <a href="register" data-toggle="modal" data-target="#registerModal">
+                Inscrever-se
+            </a>
         </div>
     </div>
+
+    {{ modal_register(register_form) }}
 </div>
 {% endblock %}
