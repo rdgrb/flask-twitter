@@ -48,7 +48,7 @@ def login():
         user = User.query.filter_by(email = form.email.data).first()
 
         if user is None:
-            return render_template("login.html", invalid_credential = True, form = form)
+            return render_template("pages/login.html", invalid_credential = True, form = form)
 
         login_user(user)
 
