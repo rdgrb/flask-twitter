@@ -4,7 +4,7 @@ class Tweet(db.Model):
     __tablename__ = "TB_TWEET"
 
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)
-    id_user = db.Column(db.Integer, foreign_key = True)
+    id_user = db.Column(db.Integer, db.ForeignKey("TB_USER.id"))
     tweet = db.Column(db.String(280))
     tweeted_at = db.Column(db.DateTime)
 
