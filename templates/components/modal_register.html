@@ -18,6 +18,16 @@
                     {{ form.name(class_="twitter-input", placeholder="Nome")}}
                     {{ form.username(class_="twitter-input", placeholder="Usuário (arroba)")}}
                     {{ form.email(class_="twitter-input", placeholder="E-mail")}}
+
+                    <span><strong>Data de Nascimento</strong></span>
+                    <p>
+                        Isso não será exibido publicamente. Confirme sua própria idade,
+                        mesmo se esta conta for de empresa, de um animal de estimação ou outros.
+                    </p>
+
+                    <span><strong>Selecione a data</strong></span>
+                    {{ form.birth_date(class_="twitter-input", placeholder="Data de Nascimento") }}
+
                     {{ form.password(class_="twitter-input", placeholder="Senha")}}
  
                     <button class="btn-primary-solid" type="submit">Inscrever-se</button>
