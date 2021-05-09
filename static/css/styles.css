@@ -139,6 +139,7 @@ button {
 
 .index-content-container > h3 {
     font-weight: 800;
+    font-size: 2.4rem;
 }
 
 /* Página de Login e de Registro */
@@ -180,6 +181,10 @@ button {
 
 .login-container header, .register-container header {
     margin-bottom: 1.3rem;
+}
+
+.register-container {
+    margin: 5rem 0rem;
 }
 
 /* Modal de Registro */

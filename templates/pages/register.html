@@ -27,6 +27,15 @@
                     <span class="text-danger">Esse e-mail já foi cadastrado</span>
                 {% endif %}
             </div>
+
+            <span><strong>Data de Nascimento</strong></span>
+            <p>
+                Isso não será exibido publicamente. Confirme sua própria idade,
+                mesmo se esta conta for de empresa, de um animal de estimação ou outros.
+            </p>
+
+            <span><strong>Selecione a data</strong></span>
+            {{ form.birth_date(class_="twitter-input", placeholder="Data de Nascimento") }}
     
             {{ form.password(class_="twitter-input", placeholder="Senha")}}
     
