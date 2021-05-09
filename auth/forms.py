@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField
+from wtforms import StringField, PasswordField, TextAreaField
 from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired, ValidationError
 
@@ -27,3 +27,7 @@ class RegisterForm(FlaskForm):
             return False
             
         return True
+
+class EditForm(FlaskForm):
+    name = StringField('', validators=[DataRequired()])
+    bio = TextAreaField('', validators=[])
