@@ -1,0 +1,5 @@
+Flask-Moment==0.11.0
+WTForms==2.3.3
+Flask-WTF==0.14.3
+pytz==2021.1
+Flask-Login==0.5.0
