@@ -247,6 +247,7 @@ button {
     width: 100%;
 
     list-style-type: none;
+    padding: 0;
 }
 
 .dashboard-sidenav li {
@@ -307,6 +308,53 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.dashboard-sidenav-avatar {
+    cursor: pointer;
+
+    height: 80px;
+    padding: 10px 5px;
+
+    border-radius: 30px;
+}
+
+.dashboard-sidenav-avatar img {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 100%;
+}
+
+.dashboard-sidenav-avatar div:last-child {
+    width: 80%;
+
+    margin-left: 0.3rem;
+
+    text-align: left;
+}
+
+.dashboard-sidenav-avatar div:last-child h6 {
+    font-weight: 700;
+}
+
+.dashboard-sidenav-avatar div:last-child h6,
+.dashboard-sidenav-avatar div:last-child small {
+    margin: 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.popover-body {
+    padding: 0 !important;
+    width: 240px;
+}
+
+.popover-body .list-group-item {
+    border: 0 !important;
+    color: var(--text);
 }
 
 /* Página de Home */
@@ -436,6 +484,12 @@ button {
     color: var(--text);
 
     margin-right: 0.5rem;
+
+    max-width: 50%;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .tweet-card-content > header > span:last-child {

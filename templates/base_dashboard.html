@@ -5,8 +5,8 @@
 
 <div class="container vh-100 p-0">
     <div class="row justify-content-center h-100">
-        <div class="col-3 dashboard-sidenav-container border-right p-4">
-            <div class="row justify-content-center p-3">
+        <div class="col-3 dashboard-sidenav-container border-right">
+            <div class="d-flex flex-column justify-content-between h-100 p-4">
 
                 <ul class="dashboard-sidenav">
                     <li class="d-flex justify-content-center w-100">
@@ -28,7 +28,7 @@
                     <li>
                         <a href="{{ url_for('profile') }}" class="dashboard-sidenav-link {{'dashboard-sidenav-link-active' if active_page == 'profile' }}">
                             <div class="dashboard-sidenav-link-icon">
-                                <i class="bi bi-person-circle"></i>
+                                <i class="bi bi-person-fill"></i>
                             </div>
                             Perfil
                         </a>
@@ -38,11 +38,24 @@
                             Tweetar
                         </button>
                     </li>
-                    <li>
-                        <a href="">Sair</a>
-                    </li>
                 </ul>
 
+                <button 
+                    data-container="body" 
+                    data-toggle="popover" 
+                    data-placement="top" 
+                    data-html="true"
+                    data-popover-content="#dashboard-popover"
+                    class="dashboard-sidenav-link dashboard-sidenav-avatar"
+                >
+                    <div class="dashboard-sidenav-link-icon">
+                        <img src="https://ui-avatars.com/api/?name={{ current_user.name }}" alt="Foto de Perfil">
+                    </div>
+                    <div>
+                        <h6>{{ current_user.name }}</h6>
+                        <small>@{{ current_user.username }}</small>
+                    </div>
+                </button>
             </div>
         </div>
         <div class="col-6 h-100 p-0 border-right">
@@ -53,6 +66,29 @@
     </div>
 
     {{ modal_tweet(current_user.name) }}
+
+    <div class="d-none" id="dashboard-popover">
+        <div class="popover-body">
+            <div class="list-group p-0">
+                <a href="{{ url_for('logout') }}" class="list-group-item list-group-item-action">
+                  Sair de @{{ current_user.username }}
+                </a>
+            </div>
+        </div>
+      </div>
 </div>
+
+<script>
+    $(function(){
+        $("[data-toggle=popover]").popover({
+            html : true,
+            content: function() {
+                const content = $(this).attr("data-popover-content");
+                return $(content).children(".popover-body").html();
+            },
+            trigger: 'focus'
+        });
+    });
+</script>
 
 {% endblock %}
