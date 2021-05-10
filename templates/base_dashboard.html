@@ -26,7 +26,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ url_for('profile') }}" class="dashboard-sidenav-link {{'dashboard-sidenav-link-active' if active_page == 'profile' }}">
+                        <a href="{{ url_for('profile', username = current_user.username ) }}" class="dashboard-sidenav-link {{'dashboard-sidenav-link-active' if active_page == 'profile' }}">
                             <div class="dashboard-sidenav-link-icon">
                                 <i class="bi bi-person-fill"></i>
                             </div>

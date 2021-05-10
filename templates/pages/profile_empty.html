@@ -1,0 +1,37 @@
+{% extends "base_dashboard.html" %}
+
+{% block dashboard_content %}
+
+<div class="profile-container">
+    <header class="border-bottom">
+        <a href="{{ url_for('dashboard') }}">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+
+        <div class="profile-header-container">
+            <h5>Perfil</h5>
+        </div>
+    </header>
+
+    <div class="profile-user-container">
+        <div class="profile-cover-banner"></div>
+
+        <div class="profile-user-info-container">
+            <div class="profile-user-info">
+                <div class="profile-avatar-container">
+                    <img src="https://ui-avatars.com/api/?name=" alt="Foto de perfil" >
+                </div>
+
+                <h5>@{{ username }}</h5>
+            </div>
+
+            <hr>
+
+            <div class="profile-tweet-empty-container">
+                <h6>Essa conta não existe</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

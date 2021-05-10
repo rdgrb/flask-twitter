@@ -568,6 +568,7 @@ button {
 .profile-header-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .profile-user-container {

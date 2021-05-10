@@ -146,9 +146,9 @@ def dashboard():
         page_title = "Página Inicial"
     )
 
-@app.route("/profile", defaults={ "user_id": -1 })
-@app.route("/profile/<user_id>")
-def profile(user_id):
+@app.route("/profile", defaults={ "username": -1 })
+@app.route("/profile/<username>")
+def profile(username):
     def search_tweets(id):
         return Tweet.query.join(User, Tweet.id_user == User.id).filter(Tweet.id_user == id).add_columns(
             Tweet.id,
@@ -157,34 +157,43 @@ def profile(user_id):
             User.id,
             User.name,
             User.username,
+            User.verified,
         ).order_by(Tweet.tweeted_at.desc())
 
     user = {}
     tweets = {}
     active_page = "profile"
 
-    if user_id == -1:
+    if username == current_user.username or username == -1:
         tweets = search_tweets(current_user.id)
         user = current_user
     else:
         active_page = None
 
-        user = User.query.filter_by(id = user_id).first()
+        user = User.query.filter_by(username = username).first()
         if user is not None:
-            tweets = search_tweets(user_id)
+            tweets = search_tweets(user.id)
     
     current_date = local_timezone.localize(datetime.now())
     form = EditForm()
 
-    return render_template(
-        "pages/profile.html",
-        user = user,
-        tweets = tweets,
-        now = current_date,
-        active_page = active_page,
-        page_title = user.name,
-        form = form
-    )
+    if user is None:
+        return render_template(
+            "pages/profile_empty.html",
+            page_title = "Perfil",
+            username = username
+        )
+    else:
+        return render_template(
+            "pages/profile.html",
+            user = user,
+            tweets = tweets,
+            now = current_date,
+            active_page = active_page,
+            page_title = user.name,
+            form = form
+        )
+
 
 @app.route("/send_tweet", methods=["POST"])
 def send_tweet():
