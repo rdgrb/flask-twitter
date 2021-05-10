@@ -117,6 +117,15 @@ button {
     border-radius: 5px;
 }
 
+
+.not-found-container h3 {
+    font-weight: 800;
+}
+
+.not-found-container h5 {
+    color: var(--primary);
+}
+
 /* Página da Index */
 .index-banner {
     height: 100%;

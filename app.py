@@ -30,6 +30,11 @@ from auth.forms import LoginForm, RegisterForm, EditForm
 from models.User import User
 from models.Tweet import Tweet
 
+# Rotas de erros de requisição
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('errorhandlers/404.html'), 404
+
 @app.route("/")
 def index():
     if current_user.is_authenticated:
