@@ -8,6 +8,10 @@
         <header>
             <i class="bi bi-twitter twitter-logo"></i>
             <h3>Entrar no Twitter</h3>
+            
+            {% if success %}
+                <span class="text-success">Usuário cadastrado com sucesso!</span>
+            {% endif %}
 
             {% if invalid_credential %}
                 <span class="text-danger">E-mail ou senha inválidos</span>

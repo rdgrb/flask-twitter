@@ -48,8 +48,9 @@ def index():
         page_title = "Twitter. É o que está acontecendo"
     )
 
-@app.route("/login", methods=["GET", "POST"])
-def login():
+@app.route("/login", defaults={ "success": False }, methods=["GET", "POST"])
+@app.route("/login/<success>", methods=["GET", "POST"])
+def login(success):
     if current_user.is_authenticated:
         return redirect(url_for("dashboard"))
 
@@ -76,7 +77,8 @@ def login():
         "pages/login.html", 
         form = form, 
         register_form = register_form,
-        page_title = "Entrar no Twitter"
+        page_title = "Entrar no Twitter",
+        success = success
     )
 
 @app.route("/logout", methods=["GET", "POST"])
@@ -121,7 +123,7 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        return redirect(url_for("login"))
+        return redirect(url_for("login", success = True))
     else:
         return render_template(
             "pages/register.html", 
